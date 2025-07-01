@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { auth } from '../firebase';
-import { useNavigate } from "react-router-dom";
-import './Login.css';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import './Login.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -15,22 +15,33 @@ const Login = () => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate("/mainpage");
+      navigate('/mainpage');
     } catch (err) {
-      console.error("Login error:", err.code, err.message);
+      console.error('Login error:', err.code, err.message);
       switch (err.code) {
-        case "auth/user-not-found":
-          setError("User not found. Try signing up.");
+        case 'auth/user-not-found':
+          setError('User not found. Try signing up.');
           break;
-        case "auth/wrong-password":
-          setError("Wrong password. Try again.");
+        case 'auth/wrong-password':
+          setError('Wrong password. Try again.');
           break;
-        case "auth/invalid-email":
-          setError("Invalid email format.");
+        case 'auth/invalid-email':
+          setError('Invalid email format.');
           break;
         default:
-          setError("Invalid credentials. Please try again.");
+          setError('Invalid credentials, try again.');
       }
+    }
+  };
+
+  const handleLoginGoogle = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      await signInWithPopup(auth, provider);
+      navigate('/mainpage');
+    } catch (err) {
+      console.error('Google login error:', err.message);
+      setError('Google sign-in failed.');
     }
   };
 
@@ -46,10 +57,12 @@ const Login = () => {
           <input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
           <button className='passwdLogin' type="submit">Login</button>
 
-          {/* 🔒 Google Login hidden on mobile */}
-          <button className='googleLogin hide-on-mobile' type="button" disabled>
-            Sign in with Google (Desktop Only)
-          </button>
+          {/* Google login button only on desktop */}
+          <div className="google-login-desktop">
+            <button className='googleLogin' type="button" onClick={handleLoginGoogle}>
+              Sign in with Google
+            </button>
+          </div>
 
           {error && <p className="error">{error}</p>}
         </form>
