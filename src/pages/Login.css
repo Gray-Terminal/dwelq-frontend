@@ -126,3 +126,43 @@
   margin-top: 0.5rem;
   text-align: center;
 }
+
+@media (max-width: 600px) {
+  .mainLogin {
+    padding: 1rem;
+    padding-left: 1rem;
+    background-size: cover;
+    height: 100vh;
+    overflow-y: auto;
+  }
+
+  .realShit {
+    margin-top: 2rem;
+    gap: 1rem;
+  }
+
+  .LoginForm {
+    width: 90%;
+    padding: 2rem;
+  }
+
+  .LoginForm input {
+    font-size: 0.95rem;
+  }
+
+  .Logo {
+    font-size: 1.5rem;
+  }
+
+  .SignUp {
+    top: 1rem;
+    right: 1rem;
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .googleLogin, .passwdLogin {
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+  }
+}

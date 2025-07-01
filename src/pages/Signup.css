@@ -99,3 +99,46 @@
     transform: translateY(0);
   }
 }
+
+
+@media (max-width: 600px) {
+  .mainSignUp {
+    padding: 1rem;
+    padding-left: 1rem;
+    background-size: cover;
+    height: 100vh;
+    overflow-y: auto;
+  }
+
+  .signUpContainer {
+    margin-top: 2rem;
+    gap: 1rem;
+  }
+
+  .signUpContainer h1 {
+    font-size: 1.8rem;
+  }
+
+  .signUpContainer form {
+    width: 90%;
+    padding: 2rem;
+  }
+
+  .signUpContainer input {
+    font-size: 0.95rem;
+    padding: 0.7rem 0.9rem;
+  }
+
+  .signUpContainer button {
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+  }
+
+  .signUpContainer p {
+    font-size: 0.8rem;
+  }
+}
