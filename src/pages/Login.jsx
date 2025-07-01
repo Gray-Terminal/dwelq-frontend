@@ -1,4 +1,3 @@
-// src/Login.jsx
 import React, { useState, useEffect } from 'react';
 import {
   signInWithEmailAndPassword,
@@ -17,26 +16,27 @@ const Login = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+  // ✅ Handle Google Redirect Result (once)
   useEffect(() => {
     getRedirectResult(auth)
       .then((result) => {
         if (result?.user) {
+          console.log("Google user:", result.user);
           navigate("/mainpage");
         }
       })
-      .catch((err) => {
-        console.error("Redirect login error:", err);
+      .catch((error) => {
+        console.error("Google redirect error:", error);
         setError("Google login failed. Try again.");
       });
   }, []);
 
-  const handleLoginWithEmail = async (e) => {
+  const handleEmailLogin = async (e) => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
       navigate("/mainpage");
     } catch (err) {
-      console.error("Login error:", err.code);
       switch (err.code) {
         case "auth/user-not-found":
           setError("User not found. Try signing up.");
@@ -48,12 +48,12 @@ const Login = () => {
           setError("Invalid email format.");
           break;
         default:
-          setError("Login failed. Try again or use Google.");
+          setError("Login failed. Try again.");
       }
     }
   };
 
-  const handleLoginWithGoogle = () => {
+  const handleGoogleLogin = () => {
     const provider = new GoogleAuthProvider();
     signInWithRedirect(auth, provider);
   };
@@ -63,13 +63,14 @@ const Login = () => {
       <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600&display=swap" rel="stylesheet" />
       <Link to="/" className="Logo">Dwelq.</Link>
       <Link to="/signup" className='SignUp'>Sign Up</Link>
+
       <div className='realShit'>
         <h1 className='text'>Login</h1>
-        <form onSubmit={handleLoginWithEmail} className="LoginForm">
+        <form onSubmit={handleEmailLogin} className="LoginForm">
           <input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
           <input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
           <button className='passwdLogin' type="submit">Login</button>
-          <button className='googleLogin' type="button" onClick={handleLoginWithGoogle}>Sign in with Google</button>
+          <button className='googleLogin' type="button" onClick={handleGoogleLogin}>Sign in with Google</button>
           {error && <p className="error">{error}</p>}
         </form>
       </div>
