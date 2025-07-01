@@ -1,0 +1,154 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;    /* ✅ prevents sideways scroll */
+  overflow-y: hidden;      /* ✅ allows vertical scrolling ONLY when needed */
+}
+
+.LandingPage {
+  background-image: url("/landing.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
+  text-decoration: none;
+}
+
+.NavBar{
+    padding: 1.5rem 2rem;
+}
+
+.NavBar ul{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 50px;
+    text-decoration: none;
+    list-style: none;
+
+}
+
+.NavBar a{
+    text-decoration: none;
+}
+
+.NavBar .Logo{
+    color: azure;
+    font-family:'Nunito', sans-serif;
+    font-size: xx-large;
+}
+
+.NavBar .MainNavContainer {
+  display: flex;
+  gap: 15rem;                        /* 🔥 Add spacing between items */
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1rem 1.5rem;
+  border-radius: 50px;
+  backdrop-filter: blur(6px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  align-items: center;
+}
+
+.NavBar .MainNav {
+  color: white;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: transform 20000s ease, color 0.3s ease;
+  font-weight: bold;
+}
+
+.NavBar .MainNav:hover {
+  transform: scale(2);   /* Grows the item */
+  color: #FFB6C1;         /* Optional glowing color on hover */
+}
+
+.NavBar .Login {
+  font-family: 'Nunito', sans-serif;
+  display: flex;
+  color: white;
+  font-weight: 500;
+  font-size: 1.15rem;
+  font-weight: bold;
+  padding: 0.95rem 2rem;
+  margin-top: 10px;
+  border: 3px transparent;
+  border-radius: 50px;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  text-decoration: none;
+}
+
+/* 🌸 Only glow on hover */
+.NavBar .Login:hover {
+  background: rgba(255, 193, 204, 0.1);
+  box-shadow:
+    0 0 8px #ffb6b9,
+    0 0 12px #ffc1cc,
+    0 0 18px #ffc1cc;
+  transform: scale(1.05);
+}
+.MainContent {
+    display: flex;
+    justify-content: flex-start; /* ⬅ Pushes content to the left */
+    align-items: center;
+    height: 100vh;
+    padding-left: 8vw; /* adds space from left edge */
+    text-decoration: none;
+}
+
+.TextContent {
+    max-width: 500px;
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    text-align: left; /* ⬅ aligns text to the left */
+    text-decoration: none;
+}
+
+.TextContent h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.TextContent h2 {
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    opacity: 0.85;
+}
+
+.StartNow {
+    padding: 0.8rem 2rem;
+    background-color: transparent;
+    text-decoration: none;
+    border: 2px solid #ffb6c1;
+    color: #ffb6c1;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.StartNow:hover {
+    background-color: #ffb6c1;
+    color: black;
+    box-shadow: 0 0 20px #ffb6c1;
+}
+
+.SVGArtImage {
+  width: 800;       /* or whatever fixed size you want */
+  height: auto;
+  max-width: 70%;
+  margin-left: 150px;
+  margin-bottom: 120px;
+}
+
+.SVGArt svg {
+  width: 000px;
+  height: auto;
+}
