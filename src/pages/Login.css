@@ -166,3 +166,10 @@
     padding: 0.6rem 1rem;
   }
 }
+
+/* 👇 Hide Google login on small screens */
+@media only screen and (max-width: 768px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+}
