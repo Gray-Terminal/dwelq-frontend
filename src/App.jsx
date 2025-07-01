@@ -5,6 +5,8 @@ import SignUp from './pages/Signup';
 import Login from './pages/Login';
 import MainPage from './pages/MainPage';
 import ProtectedRoute from './ProtectedRoute';
+import About from './pages/About';
+import Help from './pages/Help';
 
 function App() {
   return (
@@ -12,6 +14,10 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/" element={<LandingPage />} />
+      
+
+      <Route path="/about" element={<About />} />
+      <Route path="/help" element={<Help />} />
       
       {/* Protect your home/dashboard/landing page */}
       <Route

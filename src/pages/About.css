@@ -1,0 +1,64 @@
+.about-page {
+  background-color: #0f0f0f;
+  color: #f1f1f1;
+  min-height: 100vh;
+  font-family: 'Nunito', sans-serif;
+  position: relative;
+  padding: 0;
+  margin: 0;
+}
+
+.Logo {
+  position: fixed;
+  top: 1.5rem;
+  left: 2rem;
+  font-size: xx-large;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  font-family: 'nunito', sans-serif;
+}
+
+.about-container {
+  max-width: 700px;
+  margin: 8rem auto 2rem;
+  padding: 2rem;
+  background-color: rgba(30, 30, 30, 0.6);
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  text-align: center;
+}
+
+
+.about-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1.2rem;
+  color: #ffffff;
+}
+
+.about-container p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #d0d0d0;
+}
+
+.about-container ul {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+}
+
+.about-container li {
+  margin-bottom: 1rem;
+  font-size: 1.05rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 0.8rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.quote {
+  margin-top: 2rem;
+  font-style: italic;
+  color: #aaa;
+}
