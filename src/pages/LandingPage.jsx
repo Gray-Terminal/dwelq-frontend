@@ -11,8 +11,8 @@ const NavBar = () =>{
                 <li><a href="#" className="Logo">Dwelq.</a></li>
                 <div className="MainNavContainer">
                     <li><a href="#" className="MainNav">Home</a></li>
-                    <li><a href="#" className="MainNav">About</a></li>
-                    <li><a href="#" className="MainNav">Help</a></li>
+                    <li><Link to="/about" className="MainNav">About</Link></li>
+                    <li><Link to="/Help" className="MainNav">Help</Link></li>
                 </div>
                 <li><Link to="/login" className="Login">Login</Link></li>
             </ul>
@@ -30,7 +30,7 @@ const LandingPage = () => {
                         <h2>
                             Dweliq helps you build discipline, track your focus, and actually finish what you start — no clutter, no guilt.
                         </h2>
-                        <a href="#login" className="StartNow">Start Now</a>
+                        <Link to="/login" className="StartNow"></Link>
                     </div>
                     <div className="SVGArt">
                         <img src={studyArt} alt="Study illustration" className="SVGArtImage" />

@@ -13,7 +13,7 @@ const SideBar = ({ mode, setMode }) => {
 };
 
 const Timer = ({ mode }) => {
-  const [timeLeft, setTimeLeft] = useState(1500); // default for pomodoro
+  const [timeLeft, setTimeLeft] = useState(1500); // 25 mins
   const [isRunning, setIsRunning] = useState(false);
   const [pomodoroPhase, setPomodoroPhase] = useState("focus");
   const [twentyPhase, setTwentyPhase] = useState("work");
@@ -23,7 +23,10 @@ const Timer = ({ mode }) => {
 
     if (isRunning) {
       timer = setInterval(() => {
-        setTimeLeft(prev => (mode === 'stopwatch' ? prev + 1 : Math.max(prev - 1, 0)));
+        setTimeLeft((prev) => {
+          if (mode === 'stopwatch') return prev + 1;
+          return Math.max(prev - 1, 0);
+        });
       }, 1000);
     }
 
@@ -31,25 +34,34 @@ const Timer = ({ mode }) => {
   }, [isRunning, mode]);
 
   useEffect(() => {
-    if (!isRunning && timeLeft !== 0) return;
+    if (timeLeft !== 0 || !isRunning) return;
+
+    setIsRunning(false); // stop timer briefly
 
     if (mode === "pomodoro") {
-      if (pomodoroPhase === "focus") {
-        setPomodoroPhase("focus-alarm");
-        setTimeLeft(60);
-        setIsRunning(true);
-      } else if (pomodoroPhase === "focus-alarm") {
-        setPomodoroPhase("break");
-        setTimeLeft(300);
-        setIsRunning(true);
-      } else if (pomodoroPhase === "break") {
-        setPomodoroPhase("break-alarm");
-        setTimeLeft(60);
-        setIsRunning(true);
-      } else if (pomodoroPhase === "break-alarm") {
-        setPomodoroPhase("focus");
-        setTimeLeft(1500);
-        setIsRunning(true);
+      switch (pomodoroPhase) {
+        case "focus":
+          setPomodoroPhase("focus-alarm");
+          setTimeLeft(60); // 1 min alarm
+          setIsRunning(true);
+          break;
+        case "focus-alarm":
+          setPomodoroPhase("break");
+          setTimeLeft(300); // 5 min break
+          setIsRunning(true);
+          break;
+        case "break":
+          setPomodoroPhase("break-alarm");
+          setTimeLeft(60); // 1 min alarm
+          setIsRunning(true);
+          break;
+        case "break-alarm":
+          setPomodoroPhase("focus");
+          setTimeLeft(1500); // restart 25 mins
+          setIsRunning(true);
+          break;
+        default:
+          break;
       }
     }
 
@@ -58,7 +70,7 @@ const Timer = ({ mode }) => {
         setTwentyPhase("rest");
         setTimeLeft(20);
         setIsRunning(true);
-      } else if (twentyPhase === "rest") {
+      } else {
         setTwentyPhase("work");
         setTimeLeft(1200);
         setIsRunning(true);
@@ -79,24 +91,22 @@ const Timer = ({ mode }) => {
     setIsRunning(false);
   }, [mode]);
 
-  const formatTime = (seconds) => {
-    const min = String(Math.floor(seconds / 60)).padStart(2, '0');
-    const sec = String(seconds % 60).padStart(2, '0');
-    return `${min}:${sec}`;
+  const formatTime = (s) => {
+    const m = String(Math.floor(s / 60)).padStart(2, '0');
+    const sec = String(s % 60).padStart(2, '0');
+    return `${m}:${sec}`;
   };
 
   const displayTitle = () => {
     if (mode === "pomodoro") {
       if (pomodoroPhase === "focus") return "Focus Time";
-      if (pomodoroPhase === "focus-alarm") return "Take a Break!";
+      if (pomodoroPhase === "focus-alarm") return "⏰ Focus Finished!";
       if (pomodoroPhase === "break") return "Break Time";
-      if (pomodoroPhase === "break-alarm") return "Back to Work!";
+      if (pomodoroPhase === "break-alarm") return "⏰ Break Over!";
     }
-
     if (mode === "202020") {
       return twentyPhase === "work" ? "20 Min Focus" : "20 Sec Eye Break";
     }
-
     return "Stopwatch";
   };
 
@@ -104,7 +114,6 @@ const Timer = ({ mode }) => {
     <div className="timer">
       <h2>{displayTitle()}</h2>
       <h1>{formatTime(timeLeft)}</h1>
-
       <button onClick={() => setIsRunning(prev => !prev)}>
         {isRunning ? "Pause" : "Start"}
       </button>
@@ -140,6 +149,7 @@ const Timer = ({ mode }) => {
     </div>
   );
 };
+
 
 const FocusPanel = ({ bookmarks, removeBookmark }) => {
   return (
