@@ -1,16 +1,14 @@
 // src/Login.jsx
 import React, { useState, useEffect } from 'react';
-import { auth } from '../firebase';
 import {
+  signInWithEmailAndPassword,
   GoogleAuthProvider,
-  signInWithPopup,
   signInWithRedirect,
-  getRedirectResult,
-  signInWithEmailAndPassword
+  getRedirectResult
 } from 'firebase/auth';
-import { useNavigate } from "react-router-dom";
+import { auth } from '../firebase';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { isMobile } from 'react-device-detect';
 import './Login.css';
 
 const Login = () => {
@@ -27,18 +25,18 @@ const Login = () => {
         }
       })
       .catch((err) => {
-        console.error("Redirect login error", err);
-        setError("Google Login failed.");
+        console.error("Redirect login error:", err);
+        setError("Google login failed. Try again.");
       });
   }, []);
 
-  const handleLoginPswd = async (e) => {
+  const handleLoginWithEmail = async (e) => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
       navigate("/mainpage");
     } catch (err) {
-      console.error("Login error:", err.code, err.message);
+      console.error("Login error:", err.code);
       switch (err.code) {
         case "auth/user-not-found":
           setError("User not found. Try signing up.");
@@ -55,46 +53,23 @@ const Login = () => {
     }
   };
 
-  const handleLoginGoogle = async () => {
+  const handleLoginWithGoogle = () => {
     const provider = new GoogleAuthProvider();
-    try {
-      if (isMobile) {
-        await signInWithRedirect(auth, provider);
-      } else {
-        await signInWithPopup(auth, provider);
-        navigate("/mainpage");
-      }
-    } catch (err) {
-      console.error("Google Sign-In error:", err.message);
-      setError("Google Sign-In failed. Try again.");
-    }
+    signInWithRedirect(auth, provider);
   };
 
   return (
     <div className='mainLogin'>
-      <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600&display=swap" rel="stylesheet"/>
+      <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600&display=swap" rel="stylesheet" />
       <Link to="/" className="Logo">Dwelq.</Link>
       <Link to="/signup" className='SignUp'>Sign Up</Link>
-
       <div className='realShit'>
         <h1 className='text'>Login</h1>
-        <form onSubmit={handleLoginPswd} className="LoginForm">
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-          />
+        <form onSubmit={handleLoginWithEmail} className="LoginForm">
+          <input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
+          <input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
           <button className='passwdLogin' type="submit">Login</button>
-          <button className='googleLogin' type="button" onClick={handleLoginGoogle}>
-            Sign in with Google
-          </button>
+          <button className='googleLogin' type="button" onClick={handleLoginWithGoogle}>Sign in with Google</button>
           {error && <p className="error">{error}</p>}
         </form>
       </div>
