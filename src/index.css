@@ -152,3 +152,58 @@ body {
   width: 000px;
   height: auto;
 }
+
+
+@media (max-width: 768px) {
+  .NavBar {
+    padding: 1rem 1.2rem;
+  }
+
+  .NavBar ul {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 0;
+  }
+
+  .NavBar .MainNavContainer {
+    display: none; /* ❌ Hide Home, About, Help */
+  }
+
+  .NavBar .Logo {
+    font-size: 1.6rem;
+  }
+
+  .NavBar .Login {
+    margin-top: 0;
+    margin-left: auto;  /* ✅ Push to far right */
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+  }
+
+  .MainContent {
+    flex-direction: column;
+    padding: 2rem 1.5rem;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .TextContent {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .TextContent h1 {
+    font-size: 2.2rem;
+  }
+
+  .TextContent h2 {
+    font-size: 1.1rem;
+  }
+
+  .SVGArtImage {
+    margin: 2rem 0 0 0;
+    max-width: 90%;
+    margin-left: 0;
+  }
+}

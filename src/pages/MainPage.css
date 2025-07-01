@@ -6,6 +6,12 @@ body {
   font-family: 'Segoe UI', sans-serif;
 }
 
+.body-content {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+}
+
 .main-container {
   display: flex;
   flex-direction: column;
@@ -156,4 +162,45 @@ body {
   color: red;
   font-size: 1rem;
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .top-nav {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .body-content {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .sidebar {
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+  }
+
+  .timer {
+    width: 100%;
+    text-align: center;
+  }
+
+  .focus-panel {
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .nav-right {
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+
+  .nav-left .Logo {
+    font-size: 1.5rem;
+  }
 }

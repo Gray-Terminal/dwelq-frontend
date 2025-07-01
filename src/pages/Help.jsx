@@ -5,6 +5,7 @@ import './Help.css';
 const Help = () => {
   return (
     <div className="help-page">
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600&display=swap" rel="stylesheet"/>
       <Link to="/" className="Logo">Dwelq.</Link>
       <div className="help-container">
         <h1>Need Help?</h1>
