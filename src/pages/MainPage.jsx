@@ -192,11 +192,15 @@ const MainPage = () => {
   return (
     <div className='main-container'>
       <div className='top-nav'>
-        <Link to="/" className="Logo">Dwelq.</Link>
-        <div className="top-icons">
-          <button className="icon" onClick={addBookmark}>⭐</button>
-        </div>
-      </div>
+  <div className="nav-left">
+     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600&display=swap" rel="stylesheet"/>
+    <Link to="/" className="Logo">Dwelq.</Link>
+  </div>
+  <div className="nav-right">
+    <button className="icon" onClick={addBookmark}>⭐</button>
+  </div>
+</div>
+
       <div className='body-content'>
         <SideBar mode={mode} setMode={setMode} />
         <Timer mode={mode} />

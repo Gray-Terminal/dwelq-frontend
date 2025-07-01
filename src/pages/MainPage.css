@@ -17,8 +17,35 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: #1e1e1e;
+  background-color: #111;
   border-bottom: 1px solid #333;
+}
+
+.nav-left .Logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+
+.nav-right {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.icon {
+  font-size: 1.1rem;
+  color: white;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: 'nunito', sans-serif;
+}
+
+.icon:hover {
+  color: #ffb6c1;
 }
 
 .Logo {
@@ -26,6 +53,7 @@ body {
   font-weight: bold;
   color: #fff;
   text-decoration: none;
+  font-family: 'nunito', sans-serif;
 }
 
 .top-icons {
@@ -34,13 +62,6 @@ body {
   gap: 1rem;
 }
 
-.icon {
-  font-size: 1.4rem;
-  background: none;
-  border: none;
-  color: #ffd700;
-  cursor: pointer;
-}
 
 .body-content {
   display: flex;
